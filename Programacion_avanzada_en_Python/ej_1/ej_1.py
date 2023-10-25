@@ -59,9 +59,13 @@ def is_bot(line: str) -> bool:
 
     >>> is_bot('213.180.203.109 - - [15/Sep/2023:00:12:18 +0200] "GET /robots.txt HTTP/1.1" 302 567 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"')
     True
+
+    >>> is_bot('147.96.46.52 - - [10/Oct/2023:12:55:47 +0200] "GET /productos/botijos.html HTTP/1.1" 404 519 "https://antares.sip.ucm.es/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0"')
+    False
     """
 
-    return 'bot' in line.lower()
+    user_agent = get_user_agent(line)
+    return 'bot' in user_agent.lower()
 
 def get_hour(line: str) -> int:
     """
@@ -142,10 +146,10 @@ def ipaddresses(filename: str) -> set[str]:
     return ips
 
 def test_doc():
-    doctest.run_docstring_examples(get_user_agent, globals(), verbose=True)
-    doctest.run_docstring_examples(is_bot, globals(), verbose=True)
-    doctest.run_docstring_examples(ipaddresses, globals(), verbose=True)
-    doctest.run_docstring_examples(get_hour, globals(), verbose=True)
+        doctest.run_docstring_examples(get_user_agent, globals(), verbose=True, name='get_user_agent')
+        doctest.run_docstring_examples(is_bot, globals(), verbose=True, name='is_bot')
+        doctest.run_docstring_examples(ipaddresses, globals(), verbose=True, name='ipaddresses')
+        doctest.run_docstring_examples(get_hour, globals(), verbose=True, name='get_hour')
 
 def test_ipaddresses():
     assert ipaddresses('access_short.log') == {'34.105.93.183', '39.103.168.88'}
@@ -159,4 +163,4 @@ if __name__ == "__main__":
     test_doc()
     test_ipaddresses()
     test_hist()
-    print('---------------------------------------------------------------\nTests passed!')
+    print('---------------------------------------------------------------\nTests done!')
