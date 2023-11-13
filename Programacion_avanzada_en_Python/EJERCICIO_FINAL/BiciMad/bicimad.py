@@ -1,7 +1,6 @@
 from .urlemt import UrlEmt
 import pandas as pd
 import io
-import datetime
 
 
 class BiciMad(object):
@@ -19,8 +18,9 @@ class BiciMad(object):
         url_emt = UrlEmt()
         csv_file = UrlEmt.get_csv(url_emt, month, year)
         csv_string_io = io.StringIO(csv_file.read())
-        data_df = pd.read_csv(csv_string_io, sep=';')
-        data_df[['fecha', 'unlock_date', 'lock_date']].apply(pd.to_datetime)
+        data_df = pd.read_csv(csv_string_io, sep=';', index_col= 'fecha', parse_dates=['fecha', 'unlock_date', 'lock_date'])
+        #data_df[['fecha', 'unlock_date', 'lock_date']].apply(pd.to_datetime)
+        return data_df
 
     def __str__(self) -> str:
         return (f'Index: {self._data.index.name}, Type: {self._data.index.inferred_type}.\n'
@@ -31,7 +31,6 @@ class BiciMad(object):
     def clean(self) -> None:
         self._data.dropna(axis=0, how='all', inplace=True)
         self._data = self._data.astype({'fleet': str, 'idBike': str, 'station_lock': str, 'station_unlock': str})
-        self._data.set_index('fecha', inplace=True)
 
     def resume(self) -> pd.Series:
         resume_data = pd.Series(index=[ 'year', 'month', 'total_uses', 'total_time',
