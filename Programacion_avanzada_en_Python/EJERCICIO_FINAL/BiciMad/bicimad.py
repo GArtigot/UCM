@@ -19,7 +19,7 @@ class BiciMad(object):
         csv_file = UrlEmt.get_csv(url_emt, month, year)
         csv_string_io = io.StringIO(csv_file.read())
         data_df = pd.read_csv(csv_string_io, sep=';', index_col= 'fecha', parse_dates=['fecha', 'unlock_date', 'lock_date'])
-        #data_df[['fecha', 'unlock_date', 'lock_date']].apply(pd.to_datetime)
+
         return data_df
 
     def __str__(self) -> str:
