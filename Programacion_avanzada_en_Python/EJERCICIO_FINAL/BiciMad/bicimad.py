@@ -7,7 +7,7 @@ class BiciMad(object):
     def __init__(self, month: int, year: int):
         self._month: int = month
         self._year: int = year
-        self._data: pd.DataFrame = BiciMad.get_data(month, year).clean()
+        self._data: pd.DataFrame = BiciMad.get_data(month, year)
 
     @property
     def data(self):
@@ -33,13 +33,14 @@ class BiciMad(object):
         self._data = self._data.astype({'fleet': str, 'idBike': str, 'station_lock': str, 'station_unlock': str})
 
     def resume(self) -> pd.Series:
-        resume_data = pd.Series(index=[ 'year', 'month', 'total_uses', 'total_time',
-                                        'most_popular_station', 'uses_from_most_popular'])
+        resume_data = pd.Series(index=['year', 'month', 'total_uses', 'total_time',
+                                        'most_popular_station', 'uses_from_most_popular'],
+                                dtype=object)
         resume_data['year'] = self._year
         resume_data['month'] = self._month
-        resume_data['total_uses'] = self._data['fecha'].count()
+        resume_data['total_uses'] = self._data['fleet'].count()
         resume_data['total_time'] = self._data['trip_minutes'].sum()/60
-        resume_data['most_popular_station'] = self._data['lock_station_name'].mode()
-        resume_data['uses_from_most_popular'] = self._data[(self._data['lock_station_name'] == resume_data['most_popular_station'].values[0])]['fecha'].count()
+        resume_data['most_popular_station'] = self._data['lock_station_name'].mode()[0]
+        resume_data['uses_from_most_popular'] = self._data[(self._data['lock_station_name'] == resume_data['most_popular_station'])]['fleet'].count()
 
         return resume_data

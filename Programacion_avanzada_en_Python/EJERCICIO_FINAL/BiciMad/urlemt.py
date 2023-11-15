@@ -65,5 +65,5 @@ class UrlEmt(object):
         zip_content = os.listdir(r'./data/' + filename)
         csv_file = list(filter(lambda f: f.endswith('.csv'), zip_content))[0]
         csv = open(r'./data/' + filename  + r'/' + csv_file, 'r', encoding='utf-8')
-        #csv.close()
+
         return csv

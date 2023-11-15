@@ -1,11 +1,9 @@
 from BiciMad import urlemt
-from BiciMad import bicimad
 import doctest
 import io
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
-import datetime
 
 def csv_from_zip(url: str) -> io.StringIO:
     ex = r'_\d{2}_\d{2}_'
@@ -85,28 +83,28 @@ if __name__ == "__main__":
     """
     CONSULTAS
     """
-   #filtro_c1 = (usos['locktype'] == 'STATION') & (usos['unlocktype'] == 'FREE')
-   #usos_c1 = usos.where(filtro_c1)
+    filtro_c1 = (usos['locktype'] == 'STATION') & (usos['unlocktype'] == 'FREE')
+    usos_c1 = usos.where(filtro_c1)
 
-   #filtro_c2 = usos['fleet'] == 1.0
-   #regular_fleet = usos.where(filtro_c2)
+    filtro_c2 = usos['fleet'] == 1.0
+    regular_fleet = usos.where(filtro_c2)
 
-   ##Poner bonico el grafico
-   #use_hours_date = day_time(usos)
-   #use_hours_date.plot.bar()
-   #plt.show()
+    #Poner bonico el grafico
+    use_hours_date = day_time(usos)
+    use_hours_date.plot.bar()
+    plt.show()
 
-   #use_hours_weekday = weekday_time(usos)
-   #use_hours_weekday.plot.bar
-   #plt.show()
+    use_hours_weekday = weekday_time(usos)
+    use_hours_weekday.plot.bar
+    plt.show()
 
-   #trips_date = total_usage_day(usos)
-   #trips_date.plot.bar()
-   #plt.show()
+    trips_date = total_usage_day(usos)
+    trips_date.plot.bar()
+    plt.show()
 
-   #use_by_day_unlock_station = usos.groupby([pd.Grouper(freq='1D'),'station_unlock'])['fleet'].count().rename('total_trips')
+    use_by_day_unlock_station = usos.groupby([pd.Grouper(freq='1D'),'station_unlock'])['fleet'].count().rename('total_trips')
 
-    ##ATENCION FUNCIONA EL ORDENADO PERO DEVUELVE UN SET, UN SET SE ALMACENA ALEATORIAMENTE ASI QUE EL ORDEN NO SE MANTIENE
-    #sorted_desc_popular_unlock_stations = most_popular_stations(usos)
+    #ATENCION FUNCIONA EL ORDENADO PERO DEVUELVE UN SET, UN SET SE ALMACENA ALEATORIAMENTE ASI QUE EL ORDEN NO SE MANTIENE
+    sorted_desc_popular_unlock_stations = most_popular_stations(usos)
 
     most_popular_station_usage =  usage_from_most_popular_station(usos)
