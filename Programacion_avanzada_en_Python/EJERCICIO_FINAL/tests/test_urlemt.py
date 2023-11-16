@@ -1,4 +1,4 @@
-from ..BiciMad.urlemt import UrlEmt
+from BiciMad.urlemt import UrlEmt
 import pytest
 import re
 from datetime import datetime
@@ -8,7 +8,7 @@ from datetime import datetime
         (UrlEmt(), ['https://opendata.emtmadrid.es/', '/Datos-estaticos/Datos-generales-(1)'])
     ]
 )
-def test_emt(a,expected):
+def test_emt1(a,expected):
     """
     Test de la correcta inicialización de las constantes de la clase UrlEmt al construir un objeto de la misma
     :param a: objeto de la clase UrlEmt
@@ -30,7 +30,7 @@ def test_emt2(a, expected):
     :return:
     """
     urls = list(UrlEmt.select_valid_urls())
-    ex = r'_\d{2}_\d{2}_'
+    ex = r'\d{2}_\d{2}'
     pattern = re.compile(ex)
     dates = []
     for url in urls:

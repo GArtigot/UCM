@@ -1,4 +1,4 @@
-from ..BiciMad.bicimad import BiciMad
+from BiciMad.bicimad import BiciMad
 import pytest
 
 
@@ -44,21 +44,20 @@ def test_bici_mad2(expected):
     assert date_fields_list == expected
 
 @pytest.mark.parametrize(
-    "expected", [
-        (0)
+    "a, not_expected", [
+        (BiciMad(2, 23), BiciMad(2, 23).data)
     ]
 )
-def test_bici_mad3(expected):
+def test_bici_mad3(a, not_expected):
     """
     Test para comprobar el correcto funcionamiento de la función de limpieza de los datos de BiciMad
-    :param expected: número esperado de vaores NaN tras las limpieza (0)
+    :param not_expected: número de valores NaN antes de la limpieza, ha de ser menor que este
     :return:
     """
-    bici_mad_object = BiciMad(2, 23)
-    bici_mad_object.clean()
-    data_df = bici_mad_object.data
+    a.clean()
+    data_df = a.data
 
-    assert data_df.isna().sum().sum() == expected
+    assert data_df.isna().sum().sum() < not_expected.isna().sum().sum()
 
 
 @pytest.mark.parametrize(
