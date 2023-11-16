@@ -1,4 +1,4 @@
-from BiciMad import urlemt
+from BiciMad import *
 import io
 import re
 import pandas as pd
@@ -16,7 +16,7 @@ def csv_from_zip(url: str) -> io.StringIO:
     year_month_list = year_month.split('_')
     year_month_list = list(filter(None, year_month_list))
 
-    emt_info = urlemt.UrlEmt()
+    emt_info = UrlEmt()
     return emt_info.get_csv(int(year_month_list[1]), int(year_month_list[0]))
 
 def get_data(csv: io.StringIO) -> pd.DataFrame:
@@ -135,18 +135,33 @@ if __name__ == "__main__":
     filtro_c1 = (usos['locktype'] == 'STATION') & (usos['unlocktype'] == 'FREE')
     usos_c1 = usos.where(filtro_c1)
 
+    # Con BiciMad
+    objeto_bici_mad = BiciMad(2, 23)
+    objeto_bici_mad.clean()
+
+    filtro_c1 = (objeto_bici_mad.data['locktype'] == 'STATION') & (objeto_bici_mad.data['unlocktype'] == 'FREE')
+    objeto_bici_mad_data_c1 = objeto_bici_mad.data.where(filtro_c1)
+
     """
     C2
     """
     filtro_c2 = usos['fleet'] == 1.0
     regular_fleet = usos.where(filtro_c2)
 
+    ## Con BiciMad
+    objeto_bici_mad_c2 = BiciMad(2, 23)
+    objeto_bici_mad_c2.clean()
+    filtro_c2 = usos['fleet'] == 1.0
+    objeto_bici_mad_c2.data.where(filtro_c2, inplace=True)
+    objeto_bici_mad_c2.clean()
     """
     C3
     """
     use_hours_date = day_time(usos)
     use_hours_date.plot.bar()
     plt.show()
+
+    ## Con BiciMad
 
     """
     C4
@@ -155,6 +170,8 @@ if __name__ == "__main__":
     use_hours_weekday.plot.bar()
     plt.show()
 
+    # Con BiciMad
+
     """
     C5
     """
@@ -162,10 +179,14 @@ if __name__ == "__main__":
     trips_date.plot.bar()
     plt.show()
 
+    # Con BiciMad
+
     """
     C6
     """
     use_by_day_unlock_station = usos.groupby([pd.Grouper(freq='1D'),'station_unlock'])['fleet'].count().rename('total_trips')
+
+    # Con BiciMad
 
     """
     C7
@@ -173,7 +194,11 @@ if __name__ == "__main__":
     #ATENCION FUNCIONA EL ORDENADO PERO DEVUELVE UN SET, UN SET SE ALMACENA ALEATORIAMENTE ASI QUE EL ORDEN NO SE MANTIENE
     sorted_desc_popular_unlock_stations = most_popular_stations(usos)
 
+    # Con BiciMad
+
     """
     C8
     """
     most_popular_station_usage =  usage_from_most_popular_station(usos)
+
+    # Con BiciMad
