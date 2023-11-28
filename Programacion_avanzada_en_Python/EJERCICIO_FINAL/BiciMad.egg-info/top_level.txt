@@ -1,0 +1,5 @@
+BiciMad
+data
+dist
+tests
+venv
