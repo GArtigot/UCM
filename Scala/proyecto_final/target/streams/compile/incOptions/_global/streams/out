@@ -1,0 +1,23 @@
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\Germán Artigot\IdeaProjects\entregable\target\scala-2.13\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = C:\Users\Germán Artigot\IdeaProjects\entregable\target\scala-2.13\classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUtils.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Flight$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightsLoaderConfig.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AirportInfo$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Flight.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightsLoader$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightsLoader.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightsLoaderConfig$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightDate$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUtils$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	AirportInfo.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Time.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightsLoader$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FlightDate.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Time$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: C:\Users\Germán Artigot\IdeaProjects\entregable\target\scala-2.13\classes.bak[0m
