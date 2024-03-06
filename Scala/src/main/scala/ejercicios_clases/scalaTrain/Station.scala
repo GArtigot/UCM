@@ -1,5 +1,5 @@
 package ejercicios_clases.scalaTrain
 
-class Station {
+class Station(val name: String) {
 
 }
