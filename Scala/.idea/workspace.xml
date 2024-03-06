@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fcbcfccf-eeb0-40ce-8ec3-be7285204e23" name="Changes" comment="empezar a trabajar con clases en Scala">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_scala_library_2_13_12_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__scala_sdk_2_13_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/Scala-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/Scala.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/PROYECTO_FINAL/100_entregable_scala.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/PROYECTO_FINAL/entregable_scala/src/main/scala/flights.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/PROYECTO_FINAL/entregable_scala/src/main/scala/playtime.sc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/case_Time.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/scalaTrain/Station.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prueba/untitled/.idea/modules/untitled-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prueba/untitled/.idea/modules/untitled.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/Time.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/scalaTrain/Time.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/Train.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/scalaTrain/Train.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/ejercicios_clases.sc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ejercicios_clases/ejercicios_clases.sc" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Scala Worksheet" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2Yq7PmVOvdc0ObveqEhgzKNaqln" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/germa/Desktop/Documentos Importantes/Máster UCM/UCM/Scala/src/main/scala/PROYECTO_FINAL/entregable_scala/src/main/scala",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\germa\Desktop\Documentos Importantes\Máster UCM\UCM\Scala\src\main\scala\PROYECTO_FINAL\entregable_scala\src\main\scala" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\germa\Desktop\Documentos Importantes\Máster UCM\UCM\Scala\src\main\scala\PROYECTO_FINAL\entregable_scala\src\main\scala" />
+      <recent name="C:\Users\germa\Desktop\Documentos Importantes\Máster UCM\UCM\Scala\src\main\scala\PROYECTO_FINAL" />
+      <recent name="C:\Users\germa\Desktop\Documentos Importantes\Máster UCM\UCM\Scala\src\main\scala" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fcbcfccf-eeb0-40ce-8ec3-be7285204e23" name="Changes" comment="" />
+      <created>1701241235406</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701241235406</updated>
+    </task>
+    <task id="LOCAL-00001" summary="empezar a trabajar con clases en Scala">
+      <option name="closed" value="true" />
+      <created>1701340904210</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701340904210</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="empezar a trabajar con clases en Scala" />
+    <option name="LAST_COMMIT_MESSAGE" value="empezar a trabajar con clases en Scala" />
+  </component>
+</project>
