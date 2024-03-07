@@ -1,0 +1,14 @@
+org\ogomez\ejercicio2\ThermometerDevice.class
+org\ogomez\ejercicio2\ThermometerProducer.class
+org\ogomez\nontx\SimpleConsumer3.class
+org\ogomez\nontx\SimpleConsumer.class
+org\ogomez\ejercicio2\KafkaConfig.class
+org\ogomez\ejercicio2\DeviceConsumer3.class
+org\ogomez\tx\Tuple.class
+org\ogomez\ejercicio2\DeviceConsumer2.class
+org\ogomez\tx\TxMessageProducer.class
+org\ogomez\ejercicio2\DeviceConsumer1.class
+org\ogomez\tx\TxWordCount.class
+org\ogomez\nontx\KafkaConfig.class
+org\ogomez\nontx\SimpleProducer.class
+org\ogomez\nontx\SimpleConsumer2.class
