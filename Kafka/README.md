@@ -69,9 +69,19 @@ kafka-configs --bootstrap-server broker-1:29092 --entity-type brokers --describe
 ````text
 1. Utiliza el comando **kafka-configs** para setear la propiedad _message.max.bytes_ a _512_ en el broker 1
 
+Mucho mejor crear primero un topic y no me preguntes porque los broker se llaman 2,3 y 4 en vez de 1,2,3.
+
+SOLUCIÓN -> kafka-configs --bootstrap-server broker-1:29092 --entity-type brokers --entity-name 2 --alter --add-config message.max.bytes=512
+
 2. Utiliza el comando **kafka-configs** para comprobar el efecto de tu acción.
 
+SOLUCIÓN -> -> kafka-configs --bootstrap-server broker-1:29092 --entity-type brokers --entity-name 2 --describe --all
+
 3. Utiliza el comando **kafka-configs** para setear la propiedad _message.max.bytes_ a _512_ en todos los brokers
+
+kafka-configs --bootstrap-server broker-1:29092 --entity-type brokers --entity-name 3 --alter --add-config message.max.bytes=512
+
+kafka-configs --bootstrap-server broker-1:29092 --entity-type brokers --entity-name 4 --alter --add-config message.max.bytes=512
 
 4. Revierte la propiedad al valor por defecto para todos los broker.
 
@@ -141,10 +151,42 @@ increase-replication-factor.json:
 }
 ```
 
+Esta versión del JSON es incorrecta ya que los ids de los broker son realmente 2, 3 y 4 como se menciona anteriormente. La versión correcta sería:
+
+```JSON
+{
+  "version": 1,
+  "partitions": [
+    {
+      "topic": "my-topic",
+      "partition": 0,
+      "replicas": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "topic": "my-topic",
+      "partition": 1,
+      "replicas": [
+        2,
+        3,
+        4
+      ]
+    }
+  ]
+}
+```
+
+Lo que le estamos diciendo, en esencia, es que haga una reasignacion de las particiones del topic "my-topic", haciendo replicas de la particion 0 en los nodos: 2, 3 y 4 y de la particion 1 en los nodos:2, 3, 4
+
 Para crear el archivo dentro de nuestro broker podemos usar el comando:
 
 ```bash
 cat << EOF > increase-replication-factor.json
+
+# PEGA TODO EL TEXTO SUPERIOR Y TERMINA ESCRIBIENDO 'EOF' Y DALE A ENTER
 ```
 
 y pegar el contenido del mensaje en el prompt
@@ -155,14 +197,45 @@ Por último ejecutaremos el comando:
 kafka-reassign-partitions --bootstrap-server broker-1:29092 --reassignment-json-file    increase-replication-factor.json --execute
 ```
 
+Si todo ha ido bien, si volvemos a ejecutar el comando:
+
+```bash
+kafka-topics --bootstrap-server broker-1:29092 --topic my-topic --describe
+```
+
+Veremos la reasignación descrita en nuestro JSON.
+
 ### Ejercicio 2 - Administración de Topics
 
 ````text
 1. Crea un topic con 1 particion, factor de replica 1, y que sincronice tras 5 mensajes
 
+kafka-topics --bootstrap-server broker-1:29092 --create --topic topic-custom-1 --partitions 1 --replication-factor 1 --config flush.messages=5
+
 2. Cambia el número de particiones a 3 y reasigna la replicación de manera óptima.
 
+kafka-topics --bootstrap-server broker-1:29092 --alter --topic my-topic --partitions 3
+
+{
+  "version": 1,
+  "partitions": [
+    {
+      "topic": "topic-custom-1",
+      "partition": 0,
+      "replicas": [
+        2,
+        3,
+        4
+      ]
+    }
+  ]
+}
+
+kafka-reassign-partitions --bootstrap-server broker-1:29092 --reassignment-json-file    increase-replication-factor-custom-1.json --execute
+
 3. Cambia la configuración de sincronizacón para que esta se haga tras cada mensaje.
+
+kafka-topics --bootstrap-server broker-1:29092 --entity-type topics --entity-name topic-custom-1 --alter --add-config flush.messages=1
 
 4. Experimenta matando y levantando brokers, ¿Crees que tu asignación del factor de replica fue adecuada?
 ````
@@ -172,6 +245,10 @@ kafka-reassign-partitions --bootstrap-server broker-1:29092 --reassignment-json-
 ### Console Producer
 
 Primero crea un topic **console-example** con 3 particiones y factor de réplica 3.
+
+```bash
+kafka-topics --bootstrap-server broker-1:29092 --create --topic console-example --partitions 3 --replication-factor 3
+```
 
 Produciremos varios mensajes en el topic mediante el comando kafka-console-producer y observaremos el comportamiento:
 
@@ -222,6 +299,22 @@ Observad el rebalanceo y particionado que se produce mediante la partition key e
 ````text
 Necesitamos crear un productor para que un operador desde consola introduzca las lecturas de n (15??) medidores de temperatura de una sala.
 
+SOLUCIÓN -> Crear un topic con 15 particiones, crear 15 instancias console-consumers del mismo grupo. Cuando creemos un producer y enviemos mensajes en orden, los consumers solo imprimiran los mensajes enviados a sus particiones. Paso de hacerlo con 15 asi que usaremos uno con 2:
+
+Creacion del topic:
+
+kafka-topics --bootstrap-server broker-1:29092 --create --topic test-1 --partitions 3 --replication-factor 1
+
+Creacion de los consumers:
+
+kafka-console-consumer --bootstrap-server broker-1:29092 --topic test-1 --property print.key=true --group test1
+
+kafka-console-consumer --bootstrap-server broker-1:29092 --topic test-1 --property print.key=true --group test1
+
+Creacion del producer:
+
+kafka-console-producer --bootstrap-server broker-1:29092 --topic test-1 --property "parse.key=true" --property "key.separator=,"
+
 Cada lectura la recibira un dispositivo distinto simulado a través de un consumidor de consola independentiente, queremos que cada consumidor solo reciba la medición correspondiente a su medidor teniendo en cuenta que es muy importante preservar el orden de las mediciones tomadas.
 ````
 
@@ -231,18 +324,25 @@ Cada lectura la recibira un dispositivo distinto simulado a través de un consum
 
 ```bash
 pip install confluent-kafka
+#HECHO
 ```
 
 Ejemplo de ejecución de los scripts python
 
 ```bash
+cd C:\Users\germa\Desktop\Documentos Importantes\Máster UCM\UCM\Kafka\3.2.PythonConsumerProducerAPI
 python simpleProducer.py 127.0.0.1:9092 simple-topic
+#HECHO
 ```
 
 Observemos la configuración de la clase SimpleProducer. ¿Qué pasa en nuestro cluster si la ejecutamos "directamente"?
 
+RESPUESTA --> Se ha generado un topic llamado "simple-topic" con una particion y replication factor 1. Entiendo que son los parametros por defecto de Kafka cuando creamos un topic.
+
 ```text
 Usa el comando kafka-topics para ver que ha pasado con nuestro simple-topic
+
+kafka-topics --bootstrap-server broker-1:29092 --topic simple-topic --describe
 ```
 
 Es momento ahora de crear nuestro primer consumidor. ¿Sabrías decir que pasará cuando arranquemos nuestro SimpleConsumer1?
