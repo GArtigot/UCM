@@ -452,6 +452,8 @@ para una instalación limpia deberíamos obtener una salida parecida a esta:
     "version": "7.5.3-ccs"
   }
 ]
+
+# HECHO, correcto
 ```
 
 como vemos los únicos plugins instalados serán los correspondientes a `mirrorMaker``
@@ -461,6 +463,7 @@ y los conectores (recordad Aplicaciones corriendo dentro de nuestro cluster) que
 `curl http://localhost:8083/connectors`
 
 obteniendo una salida vacía (no tenemos ninguna aplicación corriendo en nuestro cluster)
+|-> CORRECTO TAMBIEN
 
 > Nota: Todos los comandos que vayamos ejecutando los podréis ejecutar como sh desde la carpeta 4. KafkaConnect
 > Os recomiendo usar un entorno linux (Linux, MAC o WSL en el caso de usar windows), no olvideis dar permisos de ejecución a los scripts (chmox -x <ruta del script>)
@@ -509,6 +512,8 @@ Adding installation directory to plugin path in the following files:
   /etc/kafka-connect/kafka-connect.properties
 
 Completed
+
+# HECHO
 ```
 
 Eligiremos instalar desde el paquete rpm/deb (es decir desde el repositorio linux disponible en nuestro contenedor), en el path por defecto y que cambie todos los posibles ficheros de configuración de nuestro cluster.
@@ -552,6 +557,8 @@ observando que ahora si lo tenemos disponible:
     "version": "7.5.3-ccs"
   }
 ]
+
+# HECHO CORRECTO
 ```
 
 Lo siguiente será crear una nueva instancia de nuestro conector (una aplicación corriendo en nuestro cluster connect). Para ello primero deberemos crear una configuración válida para él, para ello visitaremos la [Documentación de Referencia](https://github.com/confluentinc/kafka-connect-datagen/tree/master) del conector en Confluent Hub que en este caso nos lleva a un repositorio git, de la carpeta `config` del mismo extraemos esta configuracion de ejemplo:
